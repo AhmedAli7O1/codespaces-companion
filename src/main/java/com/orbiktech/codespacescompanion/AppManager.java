@@ -3,21 +3,16 @@ package com.orbiktech.codespacescompanion;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class AppManager {
     private static Stage primaryStage;
-    private static double height;
-    private static double width;
 
     public static void setPrimaryStage(Stage stage) {
         primaryStage = stage;
-        height = Screen.getPrimary().getBounds().getHeight() * 0.75;
-        width = Screen.getPrimary().getBounds().getWidth() * 0.75;
     }
 
-    public static void switchScene(String fxmlFile, String title) {
+    public static void switchScene(String fxmlFile, String title, double height, double width) {
         try {
             FXMLLoader loader = new FXMLLoader(AppManager.class.getResource(fxmlFile));
             Parent root = loader.load();
@@ -28,7 +23,7 @@ public class AppManager {
             primaryStage.show();
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

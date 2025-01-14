@@ -7,6 +7,8 @@ module com.orbiktech.codespacescompanion {
     requires nanohttpd;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires java.desktop;
+    requires java.prefs;
 
     opens com.orbiktech.codespacescompanion to javafx.fxml;
     exports com.orbiktech.codespacescompanion;

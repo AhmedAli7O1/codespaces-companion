@@ -6,6 +6,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class GithubAuth {
@@ -25,10 +27,8 @@ public class GithubAuth {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response);
-
         ObjectMapper mapper = new ObjectMapper();
 
-        return mapper.readValue(response.body(), Map.class);
+        return mapper.readValue(response.body(), new TypeReference<Map<String, String>>() {});
     }
 }

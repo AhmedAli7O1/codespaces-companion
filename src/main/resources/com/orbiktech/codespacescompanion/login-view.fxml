@@ -1,16 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.orbiktech.codespacescompanion.LoginController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.Hyperlink?>
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.orbiktech.codespacescompanion.LoginController"
+      stylesheets="@style.css"
+      styleClass="main-container">
+
+    <StackPane>
+        <ProgressIndicator fx:id="generalProgressIndicator" visible="false" />
+
+        <VBox
+                fx:id="loginWelcomeVBox"
+                styleClass="login-welcome"
+        >
+            <Label text="GitHub Login" styleClass="header" />
+            <Label
+                    text="Connect to your GitHub account to retrieve and interact with codespaces."
+                    styleClass="instruction"
+                    wrapText="true"
+            />
+            <Button text="Login" styleClass="primary-button" onAction="#getDeviceCode" />
+        </VBox>
+
+        <VBox
+                fx:id="deviceCodeVBox"
+                visible="false"
+                styleClass="device-code-container"
+        >
+
+            <Label text="Device Code Login" styleClass="header" />
+            <Label wrapText="true" text="Open the link in your browser and enter the code" styleClass="instruction" />
+            <Hyperlink fx:id="urlLabel" styleClass="url" onAction="#openVerifyUrl" />
+            <HBox styleClass="verification-section">
+                <Label fx:id="deviceCodeLabel" styleClass="device-code" />
+                <Button fx:id="copyButton" text="Copy" styleClass="primary-button" onAction="#copyCode" />
+            </HBox>
+            <Label text="Waiting for GitHub"/>
+            <ProgressIndicator fx:id="verifyProgressIndicator" styleClass="verify-progress" visible="false" />
+        </VBox>
+    </StackPane>
+
+
+
+<!--    <Label text="GitHub Login" styleClass="header" />-->
+<!--    <Label fx:id="instructionLabel" text="To log in, visit the following URL:" styleClass="instruction" />-->
+<!--    <Label fx:id="urlLabel" text="https://github.com/login/device" styleClass="url" />-->
+<!--    <Label fx:id="deviceCodeLabel" text="Your Device Code: XXXX-YYYY" styleClass="device-code" />-->
+<!--    <Button text="Copy Code" fx:id="copyButton" styleClass="modern-button" />-->
+
 </VBox>
